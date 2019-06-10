@@ -34,7 +34,7 @@ inline T const & max(T const & left, T const & middle, T const & right) {
     return ::max(left, ::max(middle, right));
 }
 
-void println(const std::string & msg) {
+void println(std::string const & msg) {
     std::cout << msg << std::endl;
 }
 
