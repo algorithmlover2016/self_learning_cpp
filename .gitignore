@@ -32,5 +32,6 @@
 *.exe
 *.out
 *.app
-main
+main*
+!main*.cpp
 
