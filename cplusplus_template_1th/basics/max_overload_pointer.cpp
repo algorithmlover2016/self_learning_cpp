@@ -54,15 +54,20 @@ int main() {
     println("fesafsfaferdf");
 
     std::cout << "::max(7, 69, 32) " << ::max(7, 69, 32) << std::endl;
-    std::cout << "::max(\"ffadsasfsfss\", \"fdfasffasfsaf\", \"fteqgdfs\")" << ::max<char const *>("ffadsasfsfss", "fdfasffasfsaf", "fteqgdfs") << std::endl;
-    // compile error. first, "fasfsfs" defualt conflict type is char const [8], and "fdasfsaf" default conflict type is char const [9], and
-    // "fteqgdfsafasf" default conflict type is char const [14];
+    std::cout << "::max(\"ffadsasfsfss\", \"fdfasffasfsaf\", \"fteqgdfs\")"
+        << ::max<char const *>("ffadsasfsfss", "fdfasffasfsaf", "fteqgdfs") << std::endl;
+    // compile error. first, "fasfsfs" defualt conflict type is char const [8],
+    // and "fdasfsaf" default conflict type is char const [9],
+    // and "fteqgdfsafasf" default conflict type is char const [14];
     // char const [8] is not equal to char const [9], and is also not equal to char const [14]
-    // std::cout << "::max(\"fasfsfs\", \"fdasfsaf\", \"fteqgdfsafasf\")" << ::max("fasfsfs", "fdasfsaf", "fteqgdfsafasf") << std::endl;
+    // std::cout << "::max(\"fasfsfs\", \"fdasfsaf\", \"fteqgdfsafasf\")"
+    //     << ::max("fasfsfs", "fdasfsaf", "fteqgdfsafasf") << std::endl;
 
-    // compile error. the inner ::max returning the type is T const * const (char const * const &), and the outer ::max have two parameters,
+    // compile error. the inner ::max returning the type is T const * const (char const * const &),
+    // and the outer ::max have two parameters,
     // whose type are char const[9] and char const * const &, respectively.
-    // std::cout << "::max(\"fadsfsfs\", \"fdasfsaf\", \"fteqgdsa\")" << ::max("fadsfsfs", "fdasfsaf", "fteqgdsa") << std::endl;
+    // std::cout << "::max(\"fadsfsfs\", \"fdasfsaf\", \"fteqgdsa\")"
+    //     << ::max("fadsfsfs", "fdasfsaf", "fteqgdsa") << std::endl;
 
     char const * chr1 = "fdsafsdf";
     char const * chr2 = "fdsfgdsfafsdf";
