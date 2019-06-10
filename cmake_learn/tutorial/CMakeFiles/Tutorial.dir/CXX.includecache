@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/gaoxiaoxing/Project/self_learning/self_learning_cpp/cmake_learn/tutorial/tutorial.cxx
+stdio.h
+-
+stdlib.h
+-
+math.h
+-
+
