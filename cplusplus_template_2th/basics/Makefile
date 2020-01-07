@@ -9,9 +9,9 @@ GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 
 GLOBAL_INCLUDE_FOLDER = -I. 
 
-
+bin_all = main_max1 main_max1_decltypedecay main_max3ref
 .PHONY: all
-all : main_max1 main_max1_decltypedecay main_max3ref
+all : $(bin_all)
 
 # obj_max1 = max1_hpp.o max1_cpp.o
 obj_max1 = max1_cpp.o
@@ -42,6 +42,5 @@ main_max3ref : max3ref.cpp
 clean:
 	rm -rf $(obj_max1)
 	rm -rf $(obj_max1_decltypedecay)
-	rm -rf $(all)
-
-
+	rm -rf $(bin_all)
+	rm -rf *.dSYM
