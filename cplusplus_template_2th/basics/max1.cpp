@@ -2,8 +2,7 @@
 #include <iostream>
 #include <string>
 
-int main()
-{
+int main() {
   int i = 42;
   std::cout << "max(7,i):   " << ::max(7,i) << '\n';
 
