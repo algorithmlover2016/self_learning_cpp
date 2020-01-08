@@ -8,6 +8,16 @@ class Stack {
     std::vector<T> elems;      // elements
 
   public:
+    Stack() = default;
+    // copy constructor call by value to decay the right template parameter which is char const * without declare Stack(char const*) -> Stack<std::string>;
+    // Stack(T const item) : elems({std::move(item)}) {
+    // }
+
+    // You can define specific deduction guides to provide additional or fix existing class template argument deductions. 
+    // when declare Stack(char const*) -> Stack<std::string>;
+    Stack(T const & item) : elems({item}) {
+    }
+
     void push(T const& elem);  // push element
     void pop();                // pop element
     T const& top() const;      // return top element
@@ -15,6 +25,8 @@ class Stack {
         return elems.empty();
     }
 };
+
+Stack(char const*) -> Stack<std::string>;
 
 template<typename T>
 void Stack<T>::push (T const& elem)

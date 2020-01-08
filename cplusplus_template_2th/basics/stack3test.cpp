@@ -2,8 +2,7 @@
 #include <iostream>
 #include <deque>
 
-int main()
-{
+int main() {
   // stack of ints:
   Stack<int> intStack;
 

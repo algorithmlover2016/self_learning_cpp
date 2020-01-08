@@ -3,6 +3,9 @@
 #include <string>
 #include <cassert>
 
+// add log information
+#include <iostream>
+
 template<>
 class Stack<std::string> {
   private:
@@ -19,17 +22,20 @@ class Stack<std::string> {
 
 void Stack<std::string>::push (std::string const& elem)
 {
+    std::cout << "call specialization string template class [" << __func__ << "]" << std::endl;
     elems.push_back(elem);    // append copy of passed elem
 }
 
 void Stack<std::string>::pop ()
 {
+    std::cout << "call specialization string template class [" << __func__ << "]" << std::endl;
     assert(!elems.empty());
     elems.pop_back();         // remove last element
 }
 
 std::string const& Stack<std::string>::top () const
 {
+    std::cout << "call specialization string template class [" << __func__ << "]" << std::endl;
     assert(!elems.empty());
     return elems.back();      // return copy of last element
 }

@@ -8,6 +8,8 @@
 *.obj
 *.vscode
 *.DS_Store
+*.swp
+*.tmp
 
 # Precompiled Headers
 *.gch
