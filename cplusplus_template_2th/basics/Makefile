@@ -3,7 +3,7 @@ CC = $(shell which g++)
 GLOBAL_CPPFLAGS_STR = -D_GNU_SOURCE -DNDEBUG -D__const__= -DBABYLON_DEFINE_EXPECT=0
 
 GLOBAL_CFLAGS_STR := -g -O3 -pipe -W -Wall -Werror -fPIC -mavx -ffast-math -fno-omit-frame-pointer
-GLOBAL_CXXFLAGS_STR = $(GLOBAL_CFLAGS_STR) -ftemplate-backtrace-limit=0 -std=c++17
+GLOBAL_CXXFLAGS_STR = $(GLOBAL_CFLAGS_STR) -ftemplate-backtrace-limit=0 -std=c++11
 # GLOBAL_CXXFLAGS_STR = 
 GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 
