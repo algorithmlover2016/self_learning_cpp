@@ -10,7 +10,7 @@ GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 GLOBAL_INCLUDE_FOLDER = -I. 
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
-		  main_stack_deduction_test
+		  main_stack_deduction_test main_stack_nontype_auto # c++17
 
 .PHONY: all
 all : $(bin_all)
@@ -54,12 +54,17 @@ $(obj_stack_3_default) : stack3test.cpp stack3.hpp
 main_stack_3_default_template_para : $(obj_stack_3_default)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
-obj_stack_deduction_test = stack_deduction_test.o
-$(obj_stack_deduction_test) : stack_deduction_test.cpp stack_deduction.hpp
-	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
-
-main_stack_deduction_test : $(obj_stack_deduction_test)
-	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+# obj_stack_deduction_test = stack_deduction_test.o
+# $(obj_stack_deduction_test) : stack_deduction_test.cpp stack_deduction.hpp
+# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+# main_stack_deduction_test : $(obj_stack_deduction_test)
+# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+#
+# obj_stack_nontype_auto = stack_nontype_auto.o
+# $(obj_stack_nontype_auto) : stackauto.cpp stackauto.hpp
+# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+# main_stack_nontype_auto : $(obj_stack_nontype_auto)
+# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
 
 .PHONY: clean
@@ -69,5 +74,6 @@ clean:
 	rm -rf $(obj_stack_1)
 	rm -rf $(obj_stack_3_default)
 	rm -rf $(obj_stack_deduction_test)
+	rm -rf $(obj_stack_nontype_auto)
 	rm -rf $(bin_all)
 	rm -rf *.dSYM

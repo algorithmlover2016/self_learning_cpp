@@ -17,7 +17,11 @@ int main()
   std::cout << stringStack.top() << '\n';
   auto size2 = stringStack.size();
 
-  if (!std::is_same_v<decltype(size1), decltype(size2)>) {
+  if (!std::is_same_v<decltype(size1), decltype(size2)>) { // valid in c++17
+    std::cout << "size types differ" << '\n';
+  }
+  // the upper sentence is equal to the sentence
+  if (!std::is_same<decltype(size1), decltype(size2)>::value) {
     std::cout << "size types differ" << '\n';
   }
 }
