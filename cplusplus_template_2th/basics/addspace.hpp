@@ -1,3 +1,5 @@
+#include <iostream>
+// c++17
 template<typename T>
 class AddSpace
 {
@@ -13,5 +15,5 @@ class AddSpace
 
 template<typename... Args>
 void print (Args... args) {
-  ( std::cout << ... << AddSpace(args) ) << '\n';
+  ( std::cout << ... << AddSpace(args) ) << '\n'; // pack fold expression is a C++17 extension the parentheses between std::cout and args) is necessary
 }

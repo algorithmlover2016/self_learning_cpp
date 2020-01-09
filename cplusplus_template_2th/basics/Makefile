@@ -3,14 +3,14 @@ CC = $(shell which g++)
 GLOBAL_CPPFLAGS_STR = -D_GNU_SOURCE -DNDEBUG -D__const__= -DBABYLON_DEFINE_EXPECT=0
 
 GLOBAL_CFLAGS_STR := -g -O3 -pipe -W -Wall -Werror -fPIC -mavx -ffast-math -fno-omit-frame-pointer
-GLOBAL_CXXFLAGS_STR = $(GLOBAL_CFLAGS_STR) -ftemplate-backtrace-limit=0 -std=c++11
+GLOBAL_CXXFLAGS_STR = $(GLOBAL_CFLAGS_STR) -ftemplate-backtrace-limit=0 -std=c++17
 # GLOBAL_CXXFLAGS_STR = 
 GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 
 GLOBAL_INCLUDE_FOLDER = -I. 
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
-		  main_stack_deduction_test main_stack_nontype_auto # c++17
+		  main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
 
 .PHONY: all
 all : $(bin_all)
@@ -54,18 +54,42 @@ $(obj_stack_3_default) : stack3test.cpp stack3.hpp
 main_stack_3_default_template_para : $(obj_stack_3_default)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
-# obj_stack_deduction_test = stack_deduction_test.o
-# $(obj_stack_deduction_test) : stack_deduction_test.cpp stack_deduction.hpp
-# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
-# main_stack_deduction_test : $(obj_stack_deduction_test)
-# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
-#
-# obj_stack_nontype_auto = stack_nontype_auto.o
-# $(obj_stack_nontype_auto) : stackauto.cpp stackauto.hpp
-# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
-# main_stack_nontype_auto : $(obj_stack_nontype_auto)
-# 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+obj_stack_deduction_test = stack_deduction_test.o
+$(obj_stack_deduction_test) : stack_deduction_test.cpp stack_deduction.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_stack_deduction_test : $(obj_stack_deduction_test)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
+obj_stack_nontype_auto = stack_nontype_auto.o
+$(obj_stack_nontype_auto) : stackauto.cpp stackauto.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_stack_nontype_auto : $(obj_stack_nontype_auto)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_print_addspace = print_addspace.o
+# $(obj_print_addspace) : varprint.cpp addspace.hpp
+$(obj_print_addspace) : varprint.cpp varprint2.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_print_addspace : $(obj_print_addspace)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_foldtraverse = foldtraverse.o
+$(obj_foldtraverse) : foldtraverse.cpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_foldtraverse : $(obj_foldtraverse)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_forthermoreprint = forthermoreprint.o
+$(obj_forthermoreprint) : forthermoreprint_test.cpp forthermoreprint.hpp addspace.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_forthermoreprint : $(obj_forthermoreprint)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_varindices = varindices.o
+$(obj_varindices) : varindices.cpp varindices.hpp addspace.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_varindices : $(obj_varindices)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
 .PHONY: clean
 clean:
@@ -76,4 +100,5 @@ clean:
 	rm -rf $(obj_stack_deduction_test)
 	rm -rf $(obj_stack_nontype_auto)
 	rm -rf $(bin_all)
+	rm -rf $(obj_print_addspace) $(obj_foldtraverse)
 	rm -rf *.dSYM
