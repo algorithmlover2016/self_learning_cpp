@@ -10,6 +10,7 @@ GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 GLOBAL_INCLUDE_FOLDER = -I. 
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
+		  main_lesstest \
 		  main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
 
 .PHONY: all
@@ -89,6 +90,12 @@ obj_varindices = varindices.o
 $(obj_varindices) : varindices.cpp varindices.hpp addspace.hpp
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
 main_varindices : $(obj_varindices)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_lesstest = lesstest.o
+$(obj_lesstest) : lesstest.cpp lessarray.hpp lessstring.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_lesstest : $(obj_lesstest)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
 .PHONY: clean
