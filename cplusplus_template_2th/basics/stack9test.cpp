@@ -1,11 +1,13 @@
 #include "stack9.hpp"
 #include <iostream>
 #include <vector>
+#include <string>
 
 int main()
 {
   Stack<int>   iStack;     // stack of ints
   Stack<float> fStack;     // stack of floats
+
 
   // manipulate int stack
   iStack.push(1);
@@ -34,4 +36,15 @@ int main()
     vStack.pop();
   }
   std::cout << '\n';
+
+  Stack<std::string> sStack;     // stack of floats
+  sStack.push("hello");
+  std::cout << "sStack.top(): " << sStack.top() << '\n';
+  // sStack = fStack; // insert elems.insert(elems.begin()...  implicit type check
+  // note; in instantiation of function template specialization 'std::__1::deque<std::__1::basic_string<char>, std::__1::allocator<std::__1::basic_string<char> >
+  //    >::insert<std::__1::__deque_iterator<float, const float *, const float &, const float *const *, long, 1024> >' requested here
+  // note: in instantiation of function template specialization 'std::__1::allocator<std::__1::basic_string<char>
+  //    >::construct<std::__1::basic_string<char>, const float &>' requested here
+  // error: no matching constructor for initialization of 'std::__1::basic_string<char>'
+
 }

@@ -1,3 +1,5 @@
+#ifndef CPLUSPLUS_TEMPLATE_2TH_BASICS_STACK5DECL_HPP
+#define CPLUSPLUS_TEMPLATE_2TH_BASICS_STACK5DECL_HPP
 template <typename T>
 class Stack {
   private:
@@ -15,3 +17,4 @@ class Stack {
     template <typename T2>
     Stack& operator= (Stack<T2> const&);
 };
+#endif
