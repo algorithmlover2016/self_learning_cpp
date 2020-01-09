@@ -3,7 +3,7 @@ CC = $(shell which g++)
 GLOBAL_CPPFLAGS_STR = -D_GNU_SOURCE -DNDEBUG -D__const__= -DBABYLON_DEFINE_EXPECT=0
 
 GLOBAL_CFLAGS_STR := -g -O3 -pipe -W -Wall -Werror -fPIC -mavx -ffast-math -fno-omit-frame-pointer
-GLOBAL_CXXFLAGS_STR = $(GLOBAL_CFLAGS_STR) -ftemplate-backtrace-limit=0 -std=c++11
+GLOBAL_CXXFLAGS_STR = $(GLOBAL_CFLAGS_STR) -ftemplate-backtrace-limit=0 -std=c++17
 # GLOBAL_CXXFLAGS_STR = 
 GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 
@@ -11,7 +11,7 @@ GLOBAL_INCLUDE_FOLDER = -I.
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
 		  main_stack9template_template_param  main_array main_lesstest \
-		  main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
+		  main_vartemplate main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
 
 .PHONY: all
 all : $(bin_all)
@@ -107,6 +107,12 @@ main_array : $(obj_arrays)
 main_stack9template_template_param : stack9test.cpp stack9.hpp
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $< -o $@
 
+obj_vartemplate = vartemplate.o
+$(obj_vartemplate) : vartemplate.cpp vartemplate.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_vartemplate : $(obj_vartemplate)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
 .PHONY: clean
 clean:
 	rm -rf $(obj_max1)
@@ -117,4 +123,5 @@ clean:
 	rm -rf $(obj_stack_nontype_auto)
 	rm -rf $(bin_all)
 	rm -rf $(obj_print_addspace) $(obj_foldtraverse)
+	rm -rf $(obj_vartemplate)
 	rm -rf *.dSYM
