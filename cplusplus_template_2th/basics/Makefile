@@ -10,7 +10,7 @@ GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 GLOBAL_INCLUDE_FOLDER = -I. 
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
-		  main_stack9template_template_param  main_array main_lesstest \
+		  main_move2 main_stack9template_template_param  main_array main_lesstest \
 		  main_vartemplate main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
 
 .PHONY: all
@@ -113,7 +113,13 @@ $(obj_vartemplate) : vartemplate.cpp vartemplate.hpp
 main_vartemplate : $(obj_vartemplate)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
-.PHONY: clean
+obj_move2 = move2.o
+$(obj_move2) : move2.cpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_move2 : $(obj_move2)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+.PHONY: clean clean_bin
 clean:
 	rm -rf $(obj_max1)
 	rm -rf $(obj_max1_decltypedecay)
@@ -121,7 +127,11 @@ clean:
 	rm -rf $(obj_stack_3_default)
 	rm -rf $(obj_stack_deduction_test)
 	rm -rf $(obj_stack_nontype_auto)
-	rm -rf $(bin_all)
 	rm -rf $(obj_print_addspace) $(obj_foldtraverse)
+	rm -rf $(obj_arrays) $(obj_forthermoreprint) $(obj_lesstest) $(obj_varindices)
 	rm -rf $(obj_vartemplate)
+	rm -rf $(obj_move2)
 	rm -rf *.dSYM
+
+clean_bin:
+	rm -rf $(bin_all)
