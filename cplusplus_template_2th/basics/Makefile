@@ -11,7 +11,7 @@ GLOBAL_INCLUDE_FOLDER = -I.
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
 		  main_move2 main_stack9template_template_param  main_array main_lesstest \
-		  main_vartemplate main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
+		  main_specialmemtmpl4 main_specialmemtmpl2 main_specialmemtmpl3 main_vartemplate main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
 
 .PHONY: all
 all : $(bin_all)
@@ -119,6 +119,21 @@ $(obj_move2) : move2.cpp
 main_move2 : $(obj_move2)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
+obj_specialmemtmpl3 = specialmemtmpl3.o
+$(obj_specialmemtmpl3) : specialmemtmpl3.cpp specialmemtmpl3.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_specialmemtmpl3 : $(obj_specialmemtmpl3)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_specialmemtmpl2 = specialmemtmpl2.o
+$(obj_specialmemtmpl2) : specialmemtmpl2.cpp specialmemtmpl2.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_specialmemtmpl2 : $(obj_specialmemtmpl2)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+main_specialmemtmpl4 : specialmemtmpl4.cpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
 .PHONY: clean clean_bin
 clean:
 	rm -rf $(obj_max1)
@@ -131,6 +146,7 @@ clean:
 	rm -rf $(obj_arrays) $(obj_forthermoreprint) $(obj_lesstest) $(obj_varindices)
 	rm -rf $(obj_vartemplate)
 	rm -rf $(obj_move2)
+	rm -rf $(obj_specialmemtmpl3) $(obj_specialmemtmpl2)
 	rm -rf *.dSYM
 
 clean_bin:

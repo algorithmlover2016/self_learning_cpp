@@ -20,4 +20,7 @@ class Person
     Person (Person&& p) : name(std::move(p.name)) {
         std::cout << "MOVE-CONSTR Person '" << name << "'\n";
     }
+    std::string getName() const {
+        return name;
+    }
 };

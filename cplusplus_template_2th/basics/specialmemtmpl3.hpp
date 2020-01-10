@@ -3,6 +3,7 @@
 #include <iostream>
 #include <type_traits>
 
+// _t since c++14; _v since c++17
 template<typename T>
 using EnableIfString = std::enable_if_t<
                          std::is_convertible_v<T,std::string>>;
@@ -24,5 +25,8 @@ class Person
     }
     Person (Person&& p) : name(std::move(p.name)) {
         std::cout << "MOVE-CONSTR Person '" << name << "'\n";
+    }
+    std::string getName() const {
+        return name;
     }
 };
