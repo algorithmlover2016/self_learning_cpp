@@ -10,7 +10,7 @@ GLOBAL_LDFLAGS_STR = -ldl -lz -lpthread -lssl -lcrypto
 GLOBAL_INCLUDE_FOLDER = -I. 
 
 bin_all = main_max1 main_max1_decltypedecay main_max3ref main_stack_1 main_stack_3_default_template_para \
-		  main_move2 main_stack9template_template_param  main_array main_lesstest \
+		  main_len2 main_cref main_move2 main_stack9template_template_param  main_array main_lesstest \
 		  main_specialmemtmpl4 main_specialmemtmpl2 main_specialmemtmpl3 main_vartemplate main_varindices main_forthermoreprint main_foldtraverse main_print_addspace main_stack_deduction_test main_stack_nontype_auto  # c++17
 
 .PHONY: all
@@ -134,6 +134,15 @@ main_specialmemtmpl2 : $(obj_specialmemtmpl2)
 main_specialmemtmpl4 : specialmemtmpl4.cpp
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
+main_cref : cref.cpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
+obj_len2 = len2.o
+$(obj_len2) : len2.cpp len2.hpp
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
+main_len2 : $(obj_len2)
+	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
+
 .PHONY: clean clean_bin
 clean:
 	rm -rf $(obj_max1)
@@ -147,6 +156,7 @@ clean:
 	rm -rf $(obj_vartemplate)
 	rm -rf $(obj_move2)
 	rm -rf $(obj_specialmemtmpl3) $(obj_specialmemtmpl2)
+	rm -rf $(obj_len2)
 	rm -rf *.dSYM
 
 clean_bin:
