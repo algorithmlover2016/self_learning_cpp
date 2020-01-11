@@ -19,7 +19,7 @@ template<typename T>
 auto len (T const& t) -> decltype((void)(t.size()), typename T::size_type()) { // must have typename keyword, otherwise
                                                                                // candidate template ignored: substitution failure [with T = std::__1::vector<int, std::__1::allocator<int> >]:
                                                                                // missing 'typename' prior to dependent type name 'vector<int, allocator<int> >::size_type'
-    std::cout << "call template<typename T> function " << __func__ << std::endl;
+    std::cout << "call template<typename T> function auto-> " << __func__ << std::endl;
     return t.size();
 }
 
