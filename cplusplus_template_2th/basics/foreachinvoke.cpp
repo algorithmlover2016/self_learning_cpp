@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include "foreachinvoke.hpp"
+// #include "invokeret.hpp"
 
 // a function to call:
 void func(int i) {
@@ -26,6 +27,13 @@ int main()
             std::cout << prefix << i << '\n';
           },
           "- value: ");                          // 1st arg of lambda
+
+  // foreach(primes.begin(), primes.end(),          // elements for 2nd arg of lambda
+  //         call,
+  //         [](std::string const& prefix, int i) { // lambda to call
+  //           std::cout << prefix << i << '\n';
+  //         },
+  //         "--value");
     
   // call obj.memfunc() for/with each elements in primes passed as argument
   MyClass obj;

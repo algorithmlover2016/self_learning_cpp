@@ -144,7 +144,7 @@ main_len2 : $(obj_len2)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
 
 obj_foreachinvoke = foreachinvoke.o
-$(obj_foreachinvoke) : foreachinvoke.cpp foreachinvoke.hpp
+$(obj_foreachinvoke) : foreachinvoke.cpp foreachinvoke.hpp invokeret.hpp
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER)  -c $< -o $@
 main_foreachinvoke : $(obj_foreachinvoke)
 	$(CC) $(GLOBAL_CXXFLAGS_STR) $(GLOBAL_INCLUDE_FOLDER) $^ -o $@
