@@ -3,6 +3,11 @@
 #include <string>
 #include "foreachinvoke.hpp"
 
+// a function to call:
+void func(int i) {
+  std::cout << "func() called for: " << i << '\n';
+}
+
 // a class with a member function that shall be called
 class MyClass {
   public:
@@ -25,6 +30,14 @@ int main()
   // call obj.memfunc() for/with each elements in primes passed as argument
   MyClass obj;
   foreach(primes.begin(), primes.end(),  // elements used as args
-          &MyClass::memfunc,             // member function to call
-          obj);                          // object to call memfunc() for
+          &MyClass::memfunc,              // member function to call; Attention: if not writing &,  call to non-static member function without an object argument
+          obj);                          // object to call memfunc() for; or &obj
+
+  foreach(primes.begin(), primes.end(),  // elements used as args
+          func);
+
+  foreach(primes.begin(), primes.end(),  // elements used as args
+          &func);
+
+  // callable function can be function name or &function_name; member must have &
 }
